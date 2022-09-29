@@ -16,15 +16,15 @@ typedef struct Circle
 } Circle;
 
 
-int CircleIsValid(const Circle *c)
+bool CircleIsValid(const Circle *c)
 {
-    if(c -> r > 0)
+    if(c -> r > 0) //Checks if radius is > 0
         return true;
     else
         return false;
 }
 
-void translate(Circle *c, const point *p)
+void translate(Circle *c, const point *p) //Increments point of c by the point p
 {
     c -> p.x += p -> x;
     c -> p.y += p -> y;
@@ -34,14 +34,14 @@ void translate(Circle *c, const point *p)
 
 int main(void)
 {
-    Circle c[5];
+    Circle c[5]; //Array of five circle structs
 
     for(int i = 0 ; i < 5 ; i++)
     {
         c[i].p.x = i;
         c[i].p.y = i;
         c[i].r = i;
-    }
+    } // Makes 5 circle structs with x = i, y = i and r = i
 
     Circle *ptr;
     point p;
@@ -51,14 +51,13 @@ int main(void)
     p.y = 3;
 
     ptr1 = &p;
+    ptr = &c[1]; //These two are used to test translate function
 
-    ptr = &c[1];
-
-    CircleIsValid(ptr);
+    CircleIsValid(ptr); //tests the CircleIsValid function
 
     translate(ptr, ptr1);
 
-    printf("x is %d, y is %d", c[1].p.x , c[1].p.y);
+    printf("x is %d, y is %d", c[1].p.x , c[1].p.y); //Prints incremented value for point of c[1]
 
     return 0;
 }
